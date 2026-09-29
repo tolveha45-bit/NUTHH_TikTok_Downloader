@@ -5,11 +5,16 @@ load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 
-ADMIN_IDS = {
-    int(x.strip())
-    for x in os.getenv("ADMIN_IDS", "").split(",")
-    if x.strip().isdigit()
-}
+admin_raw = os.getenv("ADMIN_IDS", "")
+ADMIN_IDS = set()
+
+if admin_raw:
+    for x in admin_raw.split(","):
+        clean_id = x.strip()
+        if clean_id.isdigit():
+            ADMIN_IDS.add(int(clean_id))
+
+print(f"DEBUG: Loaded ADMIN_IDS = {ADMIN_IDS}")
 
 DATABASE_PATH = os.getenv(
     "DATABASE_PATH",
