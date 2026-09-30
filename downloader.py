@@ -467,3 +467,8 @@ def cleanup_file(file_path: str):
 
 def cleanup_old_files():
     _downloader.cleanup_old_files()
+# បន្ថែមនៅខាងក្រោមបង្អស់នៃ downloader.py
+
+def valid_tiktok_url(url: str) -> bool:
+    """Helper function for validating TikTok URLs."""
+    return _downloader.is_valid_url(url)
